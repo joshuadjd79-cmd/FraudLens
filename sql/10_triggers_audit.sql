@@ -133,4 +133,19 @@ SELECT
 FROM ALERT_AUDIT
 ORDER BY audit_id DESC;
 
-PROMPT [SUCCESS] Audit triggers compiled, tested, and verified.
+-- Restore modified sample rows to preserve canonical baseline state
+UPDATE INVESTIGATION
+SET status = 'OPEN',
+    notes  = 'Offshore shell corporation escrow alert. Requested AML compliance documentation from correspondent bank.'
+WHERE investigation_id = 9004;
+
+UPDATE FRAUD_ALERT
+SET status = 'PENDING'
+WHERE alert_id = 7005;
+
+-- Reset audit tables to clean initial state
+DELETE FROM INVESTIGATION_AUDIT WHERE investigation_id = 9004;
+DELETE FROM ALERT_AUDIT WHERE alert_id = 7005;
+COMMIT;
+
+PROMPT [SUCCESS] Audit triggers compiled, tested, and verified. Sample dataset restored to canonical state.

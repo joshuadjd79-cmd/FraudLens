@@ -8,16 +8,23 @@
 
 -- Clean up existing objects if re-running (safe drop in reverse dependency order)
 BEGIN
+    -- Drop views first to avoid dangling references
+    FOR v IN (SELECT view_name FROM user_views WHERE view_name IN (
+        'VW_HIGH_RISK_TRANSACTIONS', 'VW_INVESTIGATION_SUMMARY', 
+        'VW_CUSTOMER_FRAUD_EXPOSURE', 'VW_UNASSIGNED_ALERTS'
+    )) LOOP
+        EXECUTE IMMEDIATE 'DROP VIEW ' || v.view_name;
+    END LOOP;
+
+    -- Drop tables with cascade constraints purge
     FOR t IN (SELECT table_name FROM user_tables WHERE table_name IN (
         'ALERT_AUDIT', 'INVESTIGATION_AUDIT', 'INVESTIGATION', 'INVESTIGATOR', 
         'FRAUD_ALERT', 'TRANSACTIONS', 'ACCOUNT', 'CUSTOMER'
     )) LOOP
         EXECUTE IMMEDIATE 'DROP TABLE ' || t.table_name || ' CASCADE CONSTRAINTS PURGE';
     END LOOP;
-END;
-/
 
-BEGIN
+    -- Drop sequences
     FOR s IN (SELECT sequence_name FROM user_sequences WHERE sequence_name IN (
         'SEQ_CUSTOMER_ID', 'SEQ_ACCOUNT_ID', 'SEQ_TRANSACTION_ID', 
         'SEQ_ALERT_ID', 'SEQ_INVESTIGATOR_ID', 'SEQ_INVESTIGATION_ID',
@@ -30,13 +37,20 @@ END;
 
 -- ============================================================================
 -- 1. SEQUENCES FOR PRIMARY KEY GENERATION
+-- Initialized strictly above the hardcoded sample data ranges to prevent collisions:
+-- Customers: 1001-1010  --> Next Sequence: 1011
+-- Accounts:  2001-2012  --> Next Sequence: 2013
+-- Txns:      50001-50018--> Next Sequence: 50019
+-- Alerts:    7001-7007  --> Next Sequence: 7008
+-- Inv:       301-304    --> Next Sequence: 305
+-- Inves:     9001-9005  --> Next Sequence: 9006
 -- ============================================================================
-CREATE SEQUENCE seq_customer_id      START WITH 1001 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE seq_account_id       START WITH 2001 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE seq_transaction_id   START WITH 50001 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE seq_alert_id         START WITH 7001 INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE seq_investigator_id  START WITH 301  INCREMENT BY 1 NOCACHE;
-CREATE SEQUENCE seq_investigation_id START WITH 9001 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_customer_id      START WITH 1011 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_account_id       START WITH 2013 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_transaction_id   START WITH 50019 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_alert_id         START WITH 7008 INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_investigator_id  START WITH 305  INCREMENT BY 1 NOCACHE;
+CREATE SEQUENCE seq_investigation_id START WITH 9006 INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE seq_inves_audit_id   START WITH 1    INCREMENT BY 1 NOCACHE;
 CREATE SEQUENCE seq_alert_audit_id   START WITH 1    INCREMENT BY 1 NOCACHE;
 

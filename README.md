@@ -129,16 +129,67 @@ dbms/
    ```
 3. All 11 modules will compile and execute with complete output logging.
 
-### Option B: Local Python Validation Engine
-Run the automated test runner in your terminal:
+### Option B: Local Python Validation Engine (Offline Simulation)
+Run the automated 3-tier linter and relational simulation runner in your terminal:
 ```bash
 python scripts/validate_sql.py
 ```
-This tests all tables, relations, constraints, inserts, views, and subqueries against an in-memory SQL execution engine.
+> [!NOTE]
+> `validate_sql.py` performs deep static PL/SQL linting and simulates relational execution in Python SQLite. For official native database evaluation, run `00_run_all.sql` in Oracle SQL Developer or SQL*Plus.
 
 ---
 
-## 6. Project Scope, Limitations & Future Enhancements
+## 6. Live Feature Demonstration Sequence
+
+All IDs below are verified against `03_sample_data.sql`:
+
+### A. Automatic Alert Generation via Stored Procedure
+Evaluates transaction **`50008`** (Amount: ₹180,000 INR, currently unflagged without an alert):
+```sql
+VAR v_alert_id NUMBER;
+EXEC SP_EVALUATE_AND_ALERT_TRANSACTION(50008, :v_alert_id);
+PRINT v_alert_id;
+-- Output: [SUCCESS] Generated Fraud Alert 7008 for Transaction 50008.
+```
+
+### B. Investigator Assignment with Active Status Validation
+Assigns active investigator **`302`** (Kavita Mishra) to open case **`9004`**:
+```sql
+EXEC SP_ASSIGN_INVESTIGATOR(9004, 302);
+-- Output: [SUCCESS] Assigned Investigator Kavita Mishra (ID: 302) to Case 9004.
+
+-- Negative Test: Assigning inactive investigator 304 (Farhan Qureshi)
+EXEC SP_ASSIGN_INVESTIGATOR(9001, 304);
+-- Output: ORA-20004: Error: Investigator Farhan Qureshi (ID 304) is INACTIVE.
+```
+
+### C. State Progression & Audit Trigger Capture
+Progresses case **`9004`** from `OPEN` to `UNDER REVIEW`:
+```sql
+EXEC SP_UPDATE_INVESTIGATION_STATUS(9004, 'UNDER REVIEW', 'PENDING', 'Forensic IP log requested from correspondent bank.');
+-- Output: [SUCCESS] Case 9004 status progressed from OPEN to UNDER REVIEW.
+
+-- Verify trigger capture in INVESTIGATION_AUDIT:
+SELECT audit_id, investigation_id, old_status, new_status, changed_by, change_action 
+FROM INVESTIGATION_AUDIT WHERE investigation_id = 9004;
+```
+
+### D. Master 6-Table Relational Dossier
+```sql
+SELECT inv.investigation_id, inv.status, fa.severity, t.amount, a.account_number,
+       c.first_name || ' ' || c.last_name AS customer,
+       i.first_name || ' ' || i.last_name AS lead_investigator
+FROM INVESTIGATION inv
+JOIN FRAUD_ALERT fa       ON inv.alert_id = fa.alert_id
+JOIN TRANSACTIONS t       ON fa.transaction_id = t.transaction_id
+JOIN ACCOUNT a            ON t.account_id = a.account_id
+JOIN CUSTOMER c           ON a.customer_id = c.customer_id
+LEFT JOIN INVESTIGATOR i  ON inv.investigator_id = i.investigator_id;
+```
+
+---
+
+## 7. Project Scope, Limitations & Future Enhancements
 
 ### Scope
 - Focused strictly on core relational modeling, SQL standards, and PL/SQL procedural features mandated by the B.Tech CSE DBMS curriculum.

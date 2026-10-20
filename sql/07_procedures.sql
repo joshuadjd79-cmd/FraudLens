@@ -59,12 +59,10 @@ BEGIN
     SET investigator_id = p_investigator_id
     WHERE investigation_id = p_investigation_id;
 
-    COMMIT;
     DBMS_OUTPUT.PUT_LINE('[SUCCESS] Assigned Investigator ' || v_inv_name || ' (ID: ' || p_investigator_id || ') to Case ' || p_investigation_id || '.');
 
 EXCEPTION
     WHEN OTHERS THEN
-        ROLLBACK;
         DBMS_OUTPUT.PUT_LINE('[FAILURE] SP_ASSIGN_INVESTIGATOR failed: ' || SQLERRM);
         RAISE;
 END SP_ASSIGN_INVESTIGATOR;
@@ -74,6 +72,7 @@ END SP_ASSIGN_INVESTIGATOR;
 -- PROCEDURE 2: SP_UPDATE_INVESTIGATION_STATUS
 -- Manages the progression: OPEN -> UNDER REVIEW -> CLOSED.
 -- If transitioning to CLOSED, requires a valid definitive outcome and sets end_date.
+-- Transaction control is delegated to the caller.
 -- ============================================================================
 CREATE OR REPLACE PROCEDURE SP_UPDATE_INVESTIGATION_STATUS (
     p_investigation_id IN NUMBER,
@@ -126,12 +125,10 @@ BEGIN
         WHERE investigation_id = p_investigation_id;
     END IF;
 
-    COMMIT;
     DBMS_OUTPUT.PUT_LINE('[SUCCESS] Case ' || p_investigation_id || ' status progressed from ' || v_current_status || ' to ' || v_clean_status || '.');
 
 EXCEPTION
     WHEN OTHERS THEN
-        ROLLBACK;
         DBMS_OUTPUT.PUT_LINE('[FAILURE] SP_UPDATE_INVESTIGATION_STATUS failed: ' || SQLERRM);
         RAISE;
 END SP_UPDATE_INVESTIGATION_STATUS;
@@ -141,6 +138,7 @@ END SP_UPDATE_INVESTIGATION_STATUS;
 -- PROCEDURE 3: SP_EVALUATE_AND_ALERT_TRANSACTION
 -- Automated rule evaluation: Flags transactions > 50,000 INR and generates
 -- a new FRAUD_ALERT row if one does not already exist.
+-- Transaction control is delegated to the caller.
 -- ============================================================================
 CREATE OR REPLACE PROCEDURE SP_EVALUATE_AND_ALERT_TRANSACTION (
     p_transaction_id   IN NUMBER,
@@ -175,8 +173,13 @@ BEGIN
 
     -- 3. Evaluate Illustrative Business Rule: Amount > 50,000 INR
     IF v_amount > 50000.00 THEN
-        -- Generate next ID via sequence or fallback MAX+1
-        SELECT NVL(MAX(alert_id), 7000) + 1 INTO v_next_alert_id FROM FRAUD_ALERT;
+        -- Generate next ID via sequence with MAX+1 fallback
+        BEGIN
+            SELECT seq_alert_id.NEXTVAL INTO v_next_alert_id FROM DUAL;
+        EXCEPTION
+            WHEN OTHERS THEN
+                SELECT NVL(MAX(alert_id), 7007) + 1 INTO v_next_alert_id FROM FRAUD_ALERT;
+        END;
 
         INSERT INTO FRAUD_ALERT (alert_id, transaction_id, alert_type, severity, rule_triggered, alert_date, status)
         VALUES (
@@ -193,7 +196,6 @@ BEGIN
         SET status = 'FLAGGED'
         WHERE transaction_id = p_transaction_id;
 
-        COMMIT;
         p_new_alert_id := v_next_alert_id;
         DBMS_OUTPUT.PUT_LINE('[SUCCESS] Generated Fraud Alert ' || v_next_alert_id || ' for Transaction ' || p_transaction_id || '.');
     ELSE
@@ -203,7 +205,6 @@ BEGIN
 
 EXCEPTION
     WHEN OTHERS THEN
-        ROLLBACK;
         DBMS_OUTPUT.PUT_LINE('[FAILURE] SP_EVALUATE_AND_ALERT_TRANSACTION failed: ' || SQLERRM);
         RAISE;
 END SP_EVALUATE_AND_ALERT_TRANSACTION;

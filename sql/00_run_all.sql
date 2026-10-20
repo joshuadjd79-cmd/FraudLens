@@ -17,8 +17,10 @@ SET PAGESIZE 100;
 
 PROMPT ============================================================================
 PROMPT Starting Complete FraudLens DBMS Execution Pipeline (Review 1 + Review 2)
-PROMPT Timestamp: &&_DATE
 PROMPT ============================================================================
+
+-- Display execution banner with system timestamp non-interactively
+SELECT 'Pipeline Execution Started: ' || TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI:SS') AS pipeline_status FROM DUAL;
 
 PROMPT >>> [1/11] Running 01_schema.sql (Core Tables, Constraints, Sequences)...
 @@01_schema.sql

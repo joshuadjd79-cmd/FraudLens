@@ -16,6 +16,15 @@ PROMPT =========================================================================
 PROMPT TEST SUITE 1: POSITIVE FUNCTIONAL WORKFLOWS
 PROMPT ============================================================================
 
+-- Idempotent pre-cleanup: Guarantee clean slate for test keys
+DELETE FROM INVESTIGATION_AUDIT WHERE investigation_id = 9999;
+DELETE FROM INVESTIGATION WHERE investigation_id = 9999;
+DELETE FROM FRAUD_ALERT WHERE transaction_id IN (59998, 59999);
+DELETE FROM TRANSACTIONS WHERE transaction_id IN (59998, 59999);
+DELETE FROM CUSTOMER WHERE customer_id IN (9997, 9998, 9999);
+DELETE FROM ACCOUNT WHERE account_id = 2999;
+COMMIT;
+
 SAVEPOINT sp_suite_start;
 
 -- 1.1 Insert a new transaction exceeding 50,000 threshold
@@ -122,8 +131,9 @@ END;
 /
 
 -- 2.4 Negative Test: Procedure assigning an INACTIVE Investigator (304 is INACTIVE)
+-- Tests assignment against an active, non-closed case (9001)
 BEGIN
-    SP_ASSIGN_INVESTIGATOR(9999, 304);
+    SP_ASSIGN_INVESTIGATOR(9001, 304);
     DBMS_OUTPUT.PUT_LINE('[TEST 2.4 FAILED] Inactive investigator assignment was accepted.');
 EXCEPTION
     WHEN OTHERS THEN
@@ -158,7 +168,16 @@ END;
 -- Roll back test-generated staging records
 ROLLBACK TO sp_suite_start;
 
+-- Secondary cleanup safeguard: Guarantee no test artifacts persist
+DELETE FROM INVESTIGATION_AUDIT WHERE investigation_id = 9999;
+DELETE FROM INVESTIGATION WHERE investigation_id = 9999;
+DELETE FROM FRAUD_ALERT WHERE transaction_id IN (59998, 59999);
+DELETE FROM TRANSACTIONS WHERE transaction_id IN (59998, 59999);
+DELETE FROM CUSTOMER WHERE customer_id IN (9997, 9998, 9999);
+DELETE FROM ACCOUNT WHERE account_id = 2999;
+COMMIT;
+
 PROMPT ============================================================================
 PROMPT [COMPLETE] All 13 Positive & Negative Test Cases Verified Successfully!
-PROMPT Test suite rolled back cleanly. Core sample dataset preserved.
+PROMPT Test suite rolled back and cleaned up. Core sample dataset preserved.
 PROMPT ============================================================================
