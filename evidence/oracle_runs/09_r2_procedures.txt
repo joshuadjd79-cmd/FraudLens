@@ -1,0 +1,5 @@
+[SUCCESS] Assigned Investigator Kavita Mishra (ID: 302) to Case 9001.
+[SUCCESS] Case 9001 status progressed from UNDER REVIEW to CLOSED.
+
+PL/SQL procedure successfully completed.
+

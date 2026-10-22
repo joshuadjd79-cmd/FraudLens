@@ -1,0 +1,29 @@
+
+CUSTOMER
+-----------------------------------------------------------------------------------------------------
+ACCOUNT_NUMBER           AMOUNT CHANNEL              ALERT_TYPE                     SEVERITY
+-------------------- ---------- -------------------- ------------------------------ ---------------
+Vikram Singhania
+CA-1005-01               650000 NET_BANKING          CROSS_BORDER                   CRITICAL
+
+Vikram Singhania
+CA-1005-01               250000 ATM                  HIGH_AMOUNT                    HIGH
+
+Rohan Verma
+CA-1003-02               110000 NET_BANKING          SUSPICIOUS_CHANNEL             HIGH
+
+Rohan Verma
+CA-1003-02                95000 NET_BANKING          RAPID_VELOCITY                 CRITICAL
+
+Rohan Verma
+CA-1003-02                85000 NET_BANKING          UNUSUAL_HOURS                  HIGH
+
+Karan Mehta
+SB-1007-01                58000 MOBILE_APP           HIGH_AMOUNT                    MEDIUM
+
+Sameer Khan
+SB-1009-01                49500 UPI                  STRUCTURING                    HIGH
+
+
+7 rows selected.
+

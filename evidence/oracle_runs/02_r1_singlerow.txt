@@ -1,0 +1,22 @@
+
+CUSTOMER_ID FULL_NAME_UPPERCASE
+----------- -----------------------------------------------------------------------------------------------------
+STANDARDIZED_EMAIL                                                                                    PHONE_LEN
+---------------------------------------------------------------------------------------------------- ----------
+COUNTRY_CODE
+------------
+       1001 AARAV SHARMA
+aarav.sharma@finmail.in                                                                                      13
++91
+
+       1002 PRIYA NAIR
+priya.nair@corpmail.com                                                                                      13
++91
+
+       1005 VIKRAM SINGHANIA
+vikram.s@apexholdings.in                                                                                     13
++91
+
+
+3 rows selected.
+

@@ -1,0 +1,9 @@
+
+CHANNEL                TOTAL_TX TOTAL_VOLUME AVG_TICKET
+-------------------- ---------- ------------ ----------
+NET_BANKING                   8      1820000     227500
+ATM                           3       262000   87333.33
+UPI                           4       128500      32125
+
+3 rows selected.
+

@@ -14,6 +14,7 @@ SET ECHO ON;
 SET FEEDBACK ON;
 SET LINESIZE 250;
 SET PAGESIZE 100;
+SET DEFINE OFF;
 
 PROMPT ============================================================================
 PROMPT Starting Complete FraudLens DBMS Execution Pipeline (Review 1 + Review 2)

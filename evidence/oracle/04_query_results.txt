@@ -1,0 +1,97 @@
+============================================================================
+QUERY 1: Single-Row Functions (Customer Details Normalization)
+============================================================================
+
+CUSTOMER_ID FULL_NAME_UPPERCASE 										  STANDARDIZED_EMAIL											PHONE_LEN COUNTRY_CODE
+----------- ----------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- ---------- ------------
+       1001 AARAV SHARMA											  aarav.sharma@finmail.in										       13 +91
+       1002 PRIYA NAIR												  priya.nair@corpmail.com										       13 +91
+       1005 VIKRAM SINGHANIA											  vikram.s@apexholdings.in										       13 +91
+
+3 rows selected.
+
+============================================================================
+QUERY 2: Channel Aggregation (GROUP BY & HAVING)
+============================================================================
+
+CHANNEL 	       TOTAL_TX TOTAL_VOLUME AVG_TICKET
+-------------------- ---------- ------------ ----------
+NET_BANKING		      8      1820000	 227500
+ATM			      3       262000   87333.33
+UPI			      4       128500	  32125
+
+3 rows selected.
+
+============================================================================
+QUERY 3: 4-Table Join (Customer -> Account -> Tx -> Alert)
+============================================================================
+
+CUSTOMER											      ACCOUNT_NUMBER	       AMOUNT CHANNEL		   ALERT_TYPE			  SEVERITY
+----------------------------------------------------------------------------------------------------- -------------------- ---------- -------------------- ------------------------------ ---------------
+Vikram Singhania										      CA-1005-01	       650000 NET_BANKING	   CROSS_BORDER 		  CRITICAL
+Vikram Singhania										      CA-1005-01	       250000 ATM		   HIGH_AMOUNT			  HIGH
+Rohan Verma											      CA-1003-02	       110000 NET_BANKING	   SUSPICIOUS_CHANNEL		  HIGH
+Rohan Verma											      CA-1003-02		95000 NET_BANKING	   RAPID_VELOCITY		  CRITICAL
+Rohan Verma											      CA-1003-02		85000 NET_BANKING	   UNUSUAL_HOURS		  HIGH
+Karan Mehta											      SB-1007-01		58000 MOBILE_APP	   HIGH_AMOUNT			  MEDIUM
+Sameer Khan											      SB-1009-01		49500 UPI		   STRUCTURING			  HIGH
+
+7 rows selected.
+
+============================================================================
+QUERY 4: Master 6-Table Relational Dossier Join
+============================================================================
+
+  CASE_REF CASE_STATUS	   OUTCOME		ALERT_TYPE		       SEVERITY 	    TX_ID     AMOUNT CHANNEL		  ACCOUNT_NUMBER
+---------- --------------- -------------------- ------------------------------ --------------- ---------- ---------- -------------------- --------------------
+CUSTOMER_NAME											      LEAD_INVESTIGATOR
+----------------------------------------------------------------------------------------------------- -----------------------------------------------------------------------------------------------------
+      9001 UNDER REVIEW    PENDING		UNUSUAL_HOURS		       HIGH		    50004      85000 NET_BANKING	  CA-1003-02
+Rohan Verma											      Kavita Mishra
+
+      9002 CLOSED	   CONFIRMED_FRAUD	RAPID_VELOCITY		       CRITICAL 	    50005      95000 NET_BANKING	  CA-1003-02
+Rohan Verma											      Rajesh Sen
+
+      9003 CLOSED	   FALSE_POSITIVE	HIGH_AMOUNT		       HIGH		    50006     250000 ATM		  CA-1005-01
+Vikram Singhania										      Suresh Bose
+
+      9004 OPEN 	   PENDING		CROSS_BORDER		       CRITICAL 	    50007     650000 NET_BANKING	  CA-1005-01
+Vikram Singhania										      Rajesh Sen
+
+      9005 UNDER REVIEW    PENDING		STRUCTURING		       HIGH		    50011      49500 UPI		  SB-1009-01
+Sameer Khan											      Kavita Mishra
+
+
+5 rows selected.
+
+============================================================================
+QUERY 5: View Surveillance Data (VW_HIGH_RISK_TRANSACTIONS)
+============================================================================
+
+  ALERT_ID TRANSACTION_ID CUSTOMER_NAME 											    AMOUNT ALERT_TYPE			  ALERT_SEVERITY  TX_STATUS
+---------- -------------- ----------------------------------------------------------------------------------------------------- ---------- ------------------------------ --------------- ---------------
+      7001	    50004 Rohan Verma												     85000 UNUSUAL_HOURS		  HIGH		  FLAGGED
+      7002	    50005 Rohan Verma												     95000 RAPID_VELOCITY		  CRITICAL	  FLAGGED
+      7003	    50006 Vikram Singhania											    250000 HIGH_AMOUNT			  HIGH		  FLAGGED
+      7004	    50007 Vikram Singhania											    650000 CROSS_BORDER 		  CRITICAL	  FLAGGED
+      7005	    50010 Karan Mehta												     58000 HIGH_AMOUNT			  MEDIUM	  FLAGGED
+      7006	    50011 Sameer Khan												     49500 STRUCTURING			  HIGH		  FLAGGED
+      7007	    50017 Rohan Verma												    110000 SUSPICIOUS_CHANNEL		  HIGH		  FLAGGED
+		    50003 Ananya Deshmukh											    125000						  COMPLETED
+		    50015 Vikram Singhania											    500000						  COMPLETED
+		    50008 Priya Nair												    180000						  COMPLETED
+		    50018 Priya Nair												     75000						  COMPLETED
+		    50012 Sameer Khan												     49000						  FLAGGED
+
+12 rows selected.
+
+============================================================================
+QUERY 6: Constraint Defense Test (Attempt Illegal Negative Transaction)
+============================================================================
+INSERT INTO TRANSACTIONS (transaction_id, account_id, transaction_type, amount, channel, status)
+*
+ERROR at line 1:
+ORA-02290: check constraint (FRAUDLENS_USER.CHK_TX_AMOUNT) violated
+Help: https://docs.oracle.com/error-help/db/ora-02290/
+
+

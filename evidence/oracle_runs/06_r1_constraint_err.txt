@@ -1,0 +1,7 @@
+INSERT INTO TRANSACTIONS (transaction_id, account_id, transaction_type, amount, channel, status)
+*
+ERROR at line 1:
+ORA-02290: check constraint (FRAUDLENS_USER.CHK_TX_AMOUNT) violated
+Help: https://docs.oracle.com/error-help/db/ora-02290/
+
+

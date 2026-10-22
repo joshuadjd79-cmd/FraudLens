@@ -1,0 +1,113 @@
+============================================================================
+1. ALL TABLES IN FRAUDLENS_USER SCHEMA
+============================================================================
+
+TABLE_NAME															 STATUS     NUM_ROWS TABLESPACE_NAME
+-------------------------------------------------------------------------------------------------------------------------------- -------- ---------- ------------------------------
+ACCOUNT 															 VALID		     USERS
+ALERT_AUDIT															 VALID		     USERS
+CUSTOMER															 VALID		     USERS
+FRAUD_ALERT															 VALID		     USERS
+INVESTIGATION															 VALID		     USERS
+INVESTIGATION_AUDIT														 VALID		     USERS
+INVESTIGATOR															 VALID		     USERS
+TRANSACTIONS															 VALID		     USERS
+
+8 rows selected.
+
+============================================================================
+2. RECORD COUNTS ACROSS ALL CORE & AUDIT TABLES
+============================================================================
+
+TABLE_NAME	    RECORD_COUNT
+------------------- ------------
+CUSTOMER		      10
+ACCOUNT 		      12
+TRANSACTIONS		      18
+FRAUD_ALERT		       7
+INVESTIGATOR		       4
+INVESTIGATION		       5
+INVESTIGATION_AUDIT	       0
+ALERT_AUDIT		       0
+
+8 rows selected.
+
+============================================================================
+3. SEQUENCES STATUS & CURRENT VALUES
+============================================================================
+
+SEQUENCE_NAME															  MIN_VALUE  MAX_VALUE INCREMENT_BY LAST_NUMBER
+-------------------------------------------------------------------------------------------------------------------------------- ---------- ---------- ------------ -----------
+SEQ_ACCOUNT_ID																  1 1.0000E+28		  1	   2013
+SEQ_ALERT_AUDIT_ID															  1 1.0000E+28		  1	      3
+SEQ_ALERT_ID																  1 1.0000E+28		  1	   7009
+SEQ_CUSTOMER_ID 															  1 1.0000E+28		  1	   1011
+SEQ_INVESTIGATION_ID															  1 1.0000E+28		  1	   9006
+SEQ_INVESTIGATOR_ID															  1 1.0000E+28		  1	    305
+SEQ_INVES_AUDIT_ID															  1 1.0000E+28		  1	      4
+SEQ_TRANSACTION_ID															  1 1.0000E+28		  1	  50019
+
+8 rows selected.
+
+============================================================================
+4. VIEWS STATUS
+============================================================================
+
+VIEW_NAME															 R
+-------------------------------------------------------------------------------------------------------------------------------- -
+VW_CUSTOMER_FRAUD_EXPOSURE													 N
+VW_HIGH_RISK_TRANSACTIONS													 N
+VW_INVESTIGATION_SUMMARY													 N
+VW_UNASSIGNED_ALERTS														 N
+
+4 rows selected.
+
+============================================================================
+5. STORED PROCEDURES & FUNCTIONS STATUS
+============================================================================
+
+OBJECT_NAME															 OBJECT_TYPE		 STATUS  CREATED   LAST_DDL_
+-------------------------------------------------------------------------------------------------------------------------------- ----------------------- ------- --------- ---------
+FN_CALCULATE_RISK_TIER														 FUNCTION		 VALID	 21-OCT-26 22-OCT-26
+FN_GET_ACCOUNT_ALERT_COUNT													 FUNCTION		 VALID	 21-OCT-26 22-OCT-26
+FN_GET_TOTAL_TX_AMOUNT														 FUNCTION		 VALID	 21-OCT-26 22-OCT-26
+SP_ASSIGN_INVESTIGATOR														 PROCEDURE		 VALID	 21-OCT-26 22-OCT-26
+SP_EVALUATE_AND_ALERT_TRANSACTION												 PROCEDURE		 VALID	 21-OCT-26 22-OCT-26
+SP_UPDATE_INVESTIGATION_STATUS													 PROCEDURE		 VALID	 21-OCT-26 22-OCT-26
+
+6 rows selected.
+
+============================================================================
+6. TRIGGERS STATUS
+============================================================================
+
+TRIGGER_NAME															 TRIGGER_TYPE
+-------------------------------------------------------------------------------------------------------------------------------- ----------------
+TRIGGERING_EVENT
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+TABLE_NAME															 STATUS
+-------------------------------------------------------------------------------------------------------------------------------- --------
+TRG_FRAUD_ALERT_AUDIT														 AFTER EACH ROW
+UPDATE
+FRAUD_ALERT															 ENABLED
+
+TRG_INVESTIGATION_STATUS_AUDIT													 AFTER EACH ROW
+UPDATE
+INVESTIGATION															 ENABLED
+
+
+2 rows selected.
+
+============================================================================
+7. CONSTRAINTS AUDIT
+============================================================================
+
+C CONSTRAINT_COUNT STATUS
+- ---------------- --------
+C		53 ENABLED
+P		 8 ENABLED
+R		 5 ENABLED
+U		 5 ENABLED
+
+4 rows selected.
+

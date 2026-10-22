@@ -1,0 +1,7 @@
+
+  AUDIT_ID INVESTIGATION_ID OLD_STATUS   NEW_STATUS   CHANGED_BY      CHANGE_ACTION
+---------- ---------------- ------------ ------------ --------------- ------------------
+         5             9001 UNDER REVIEW CLOSED       FRAUDLENS_USER  STATUS_TRANSITION
+
+1 row selected.
+

@@ -1,0 +1,11 @@
+
+  ALERT_ID TRANSACTION_ID CUSTOMER_NAME          AMOUNT ALERT_TYPE       ALERT_SEVE TX_STATUS
+---------- -------------- ------------------ ---------- ---------------- ---------- ----------
+      7001          50004 Rohan Verma             85000 UNUSUAL_HOURS    HIGH       FLAGGED
+      7002          50005 Rohan Verma             95000 RAPID_VELOCITY   CRITICAL   FLAGGED
+      7003          50006 Vikram Singhania       250000 HIGH_AMOUNT      HIGH       FLAGGED
+      7004          50007 Vikram Singhania       650000 CROSS_BORDER     CRITICAL   FLAGGED
+      7005          50010 Karan Mehta             58000 HIGH_AMOUNT      MEDIUM     FLAGGED
+
+5 rows selected.
+

@@ -1,0 +1,10 @@
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT CHANNEL              STATUS             SYS_AVG DIFF_FROM_AVG
+-------------- ---------- ---------- -------------------- --------------- ---------- -------------
+         50007       2006     650000 NET_BANKING          FLAGGED          126358.33     523641.67
+         50015       2012     500000 NET_BANKING          COMPLETED        126358.33     373641.67
+         50006       2006     250000 ATM                  FLAGGED          126358.33     123641.67
+         50008       2002     180000 NET_BANKING          COMPLETED        126358.33      53641.67
+
+4 rows selected.
+

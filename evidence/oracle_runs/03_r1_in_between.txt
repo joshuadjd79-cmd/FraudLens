@@ -1,0 +1,13 @@
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT CHANNEL              STATUS
+-------------- ---------- ---------- -------------------- ---------------
+         50008       2002     180000 NET_BANKING          COMPLETED
+         50003       2005     125000 NET_BANKING          COMPLETED
+         50017       2004     110000 NET_BANKING          FLAGGED
+         50005       2004      95000 NET_BANKING          FLAGGED
+         50004       2004      85000 NET_BANKING          FLAGGED
+         50018       2002      75000 NET_BANKING          COMPLETED
+         50010       2008      58000 MOBILE_APP           FLAGGED
+
+7 rows selected.
+

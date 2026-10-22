@@ -1,0 +1,7 @@
+       FN_CALCULATE_RISK_TIER(risk_score) AS calculated_tier
+       *
+ERROR at line 2:
+ORA-20032: Customer ID 15 not found.
+ORA-06512: at "FRAUDLENS_USER.FN_CALCULATE_RISK_TIER", line 23
+
+

@@ -1,0 +1,1194 @@
+============================================================================
+Starting Complete FraudLens DBMS Execution Pipeline (Review 1 + Review 2)
+============================================================================
+
+PIPELINE_STATUS
+-----------------------------------------------
+Pipeline Execution Started: 2026-10-22 11:56:36
+
+1 row selected.
+
+>>> [1/11] Running 01_schema.sql (Core Tables, Constraints, Sequences)...
+
+PL/SQL procedure successfully completed.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Sequence created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Comment created.
+
+
+Table created.
+
+
+Table created.
+
+
+TABLE_NAME
+--------------------------------------------------------------------------------------------------------------------------------
+ACCOUNT
+ALERT_AUDIT
+CUSTOMER
+FRAUD_ALERT
+INVESTIGATION
+INVESTIGATION_AUDIT
+INVESTIGATOR
+TRANSACTIONS
+
+8 rows selected.
+
+>>> [2/11] Running 02_ddl_dml_demos.sql (Review 1 DDL & DML Operations)...
+
+Table created.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table altered.
+
+
+Table dropped.
+
+
+Savepoint created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+CUSTOMER_ID FIRST_NAME					       LAST_NAME					  EMAIL 											       KYC_STATUS      RISK_SCORE
+----------- -------------------------------------------------- -------------------------------------------------- ---------------------------------------------------------------------------------------------------- --------------- ----------
+       9998 Default					       Tester						  default.tester@fraudlens-demo.com								       PENDING		       10
+       9999 Test					       Subject						  test.subject@fraudlens-demo.com								       PENDING		       15
+
+2 rows selected.
+
+
+1 row updated.
+
+
+CUSTOMER_ID FIRST_NAME					       LAST_NAME					  KYC_STATUS	  RISK_SCORE
+----------- -------------------------------------------------- -------------------------------------------------- --------------- ----------
+       9999 Test					       Subject						  VERIFIED		   5
+
+1 row selected.
+
+
+1 row updated.
+
+
+2 rows deleted.
+
+
+REMAINING_TEST_RECORDS
+----------------------
+		     0
+
+1 row selected.
+
+
+Rollback complete.
+
+[SUCCESS] 02_ddl_dml_demos.sql executed successfully. All temporary rows rolled back.
+>>> [3/11] Running 03_sample_data.sql (Populating Consistent Sample Data)...
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+Commit complete.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+1 row created.
+
+
+Commit complete.
+
+
+ENTITY	      TOTAL_ROWS
+------------- ----------
+CUSTOMER	      10
+ACCOUNT 	      12
+TRANSACTIONS	      18
+FRAUD_ALERT	       7
+INVESTIGATOR	       4
+INVESTIGATION	       5
+
+6 rows selected.
+
+>>> [4/11] Running 04_review1_queries.sql (Functions, Operators, Group By, Joins)...
+
+CUSTOMER_ID FULL_NAME_UPPERCASE
+----------- -----------------------------------------------------------------------------------------------------
+STANDARDIZED_EMAIL										     FORMAL_FIRST_NAME					PHONE_NUMBER_LENGTH COUNTRY_CODE
+---------------------------------------------------------------------------------------------------- -------------------------------------------------- ------------------- ------------
+       1001 AARAV SHARMA
+aarav.sharma@finmail.in 									     Aarav								 13 +91
+
+       1002 PRIYA NAIR
+priya.nair@corpmail.com 									     Priya								 13 +91
+
+       1003 ROHAN VERMA
+rohan.verma@quickpay.in 									     Rohan								 13 +91
+
+       1004 ANANYA DESHMUKH
+ananya.d@globalbiz.com										     Ananya								 13 +91
+
+       1005 VIKRAM SINGHANIA
+vikram.s@apexholdings.in									     Vikram								 13 +91
+
+       1006 SNEHA PATEL
+sneha.patel@webmail.in										     Sneha								 13 +91
+
+       1007 KARAN MEHTA
+karan.mehta@freelance.org									     Karan								 13 +91
+
+       1008 DIVYA IYER
+divya.iyer@technowave.com									     Divya								 13 +91
+
+       1009 SAMEER KHAN
+sameer.k@shadownet.me										     Sameer								 13 +91
+
+       1010 MEERA REDDY
+meera.reddy@apexcloud.in									     Meera								 13 +91
+
+
+10 rows selected.
+
+
+TRANSACTION_ID	   AMOUNT ROUNDED_AMOUNT AMOUNT_TRUNCATED_THOUSANDS PARITY_FLAG
+-------------- ---------- -------------- -------------------------- -----------
+	 50007	   650000	  650000		     650000	      1
+	 50015	   500000	  500000		     500000	      1
+	 50006	   250000	  250000		     250000	      0
+	 50008	   180000	  180000		     180000	      0
+	 50003	   125000	  125000		     125000	      1
+	 50017	   110000	  110000		     110000	      1
+	 50005	    95000	   95000		      95000	      1
+	 50004	    85000	   85000		      85000	      0
+	 50018	    75000	   75000		      75000	      0
+	 50010	    58000	   58000		      58000	      0
+
+10 rows selected.
+
+
+ACCOUNT_NUMBER	     ACCOUNT_TYPE	  OPENING_DATE	       DAY_OPENED			    ACCOUNT_AGE_MONTHS
+-------------------- -------------------- -------------------- ------------------------------------ ------------------
+SB-1001-01	     SAVINGS		  16-Jan-2023	       Monday						  45.2
+CA-1002-01	     CURRENT		  12-Feb-2023	       Sunday						  44.3
+SB-1003-01	     SAVINGS		  08-Mar-2023	       Wednesday					  43.5
+CA-1003-02	     CURRENT		  15-Mar-2023	       Wednesday					  43.2
+SL-1004-01	     SALARY		  20-Apr-2023	       Thursday 					  42.1
+CA-1005-01	     CURRENT		  25-May-2023	       Thursday 					  40.9
+SB-1006-01	     SAVINGS		  02-Jul-2023	       Sunday						  39.7
+SB-1007-01	     SAVINGS		  15-Jul-2023	       Saturday 					  39.2
+SL-1008-01	     SALARY		  06-Aug-2023	       Sunday						  38.5
+SB-1009-01	     SAVINGS		  20-Sep-2023	       Wednesday					  37.1
+SB-1010-01	     SAVINGS		  05-Oct-2023	       Thursday 					  36.6
+NRI-1005-02	     NRI		  10-Oct-2023	       Tuesday						  36.4
+
+12 rows selected.
+
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT COUNTERPARTY_DISPLAY	    RESOLVED_DESTINATION
+-------------- ---------- ---------- ------------------------------ ------------------------------
+	 50001	     2001      15000 EXTERNAL-UPI-01		    EXTERNAL-UPI-01
+	 50002	     2001	2450 MERCHANT-RETAIL-44 	    MERCHANT-RETAIL-44
+	 50003	     2005     125000 CORP-PAYROLL-99		    CORP-PAYROLL-99
+	 50004	     2004      85000 BENEFICIARY-EXT-889	    BENEFICIARY-EXT-889
+	 50005	     2004      95000 BENEFICIARY-EXT-889	    BENEFICIARY-EXT-889
+	 50006	     2006     250000 N/A (Self/Cash Draw)	    ATM
+	 50007	     2006     650000 OFFSHORE-ESCROW-002	    OFFSHORE-ESCROW-002
+	 50008	     2002     180000 VENDOR-RAW-MATERIALS	    VENDOR-RAW-MATERIALS
+	 50009	     2003      10000 N/A (Self/Cash Draw)	    ATM
+	 50010	     2008      58000 UNKNOWN-PEER-77		    UNKNOWN-PEER-77
+	 50011	     2010      49500 SUSPECT-MULE-01		    SUSPECT-MULE-01
+	 50012	     2010      49000 SUSPECT-MULE-02		    SUSPECT-MULE-02
+	 50013	     2009	3500 AIRLINE-TICKETING		    AIRLINE-TICKETING
+	 50014	     2011      15000 FAMILY-TRANSFER-11 	    FAMILY-TRANSFER-11
+	 50015	     2012     500000 OVERSEAS-PARENT-CORP	    OVERSEAS-PARENT-CORP
+	 50016	     2007	2000 N/A (Self/Cash Draw)	    ATM
+	 50017	     2004     110000 CRYPTO-EXCHANGE-IN 	    CRYPTO-EXCHANGE-IN
+	 50018	     2002      75000 TAX-AUTHORITY-GST		    TAX-AUTHORITY-GST
+
+18 rows selected.
+
+
+INVESTIGATION_ID   ALERT_ID STATUS	    RESOLUTION_STATUS
+---------------- ---------- --------------- --------------------
+	    9001       7001 UNDER REVIEW    Active Investigation
+	    9002       7002 CLOSED	    2024-02-05
+	    9003       7003 CLOSED	    2024-02-04
+	    9004       7004 OPEN	    Active Investigation
+	    9005       7006 UNDER REVIEW    Active Investigation
+
+5 rows selected.
+
+
+CUSTOMER_ID CUSTOMER_NAME											  KYC_STATUS	  RISK_SCORE
+----------- ----------------------------------------------------------------------------------------------------- --------------- ----------
+       1009 Sameer Khan 											  REJECTED		  95
+       1005 Vikram Singhania											  VERIFIED		  85
+       1003 Rohan Verma 											  VERIFIED		  78
+       1007 Karan Mehta 											  VERIFIED		  62
+       1006 Sneha Patel 											  PENDING		  45
+
+5 rows selected.
+
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT CHANNEL		  STATUS
+-------------- ---------- ---------- -------------------- ---------------
+	 50007	     2006     650000 NET_BANKING	  FLAGGED
+	 50015	     2012     500000 NET_BANKING	  COMPLETED
+	 50008	     2002     180000 NET_BANKING	  COMPLETED
+	 50003	     2005     125000 NET_BANKING	  COMPLETED
+	 50017	     2004     110000 NET_BANKING	  FLAGGED
+	 50005	     2004      95000 NET_BANKING	  FLAGGED
+	 50004	     2004      85000 NET_BANKING	  FLAGGED
+	 50018	     2002      75000 NET_BANKING	  COMPLETED
+	 50010	     2008      58000 MOBILE_APP 	  FLAGGED
+
+9 rows selected.
+
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT TRANSACTION_TYPE	  CHANNEL
+-------------- ---------- ---------- -------------------- --------------------
+	 50010	     2008      58000 TRANSFER		  MOBILE_APP
+	 50018	     2002      75000 PAYMENT		  NET_BANKING
+	 50004	     2004      85000 TRANSFER		  NET_BANKING
+	 50005	     2004      95000 TRANSFER		  NET_BANKING
+	 50017	     2004     110000 TRANSFER		  NET_BANKING
+	 50003	     2005     125000 DEPOSIT		  NET_BANKING
+	 50008	     2002     180000 TRANSFER		  NET_BANKING
+
+7 rows selected.
+
+
+CUSTOMER_ID EMAIL
+----------- ----------------------------------------------------------------------------------------------------
+NAME
+-----------------------------------------------------------------------------------------------------
+       1001 aarav.sharma@finmail.in
+Aarav Sharma
+
+       1002 priya.nair@corpmail.com
+Priya Nair
+
+       1003 rohan.verma@quickpay.in
+Rohan Verma
+
+       1005 vikram.s@apexholdings.in
+Vikram Singhania
+
+       1006 sneha.patel@webmail.in
+Sneha Patel
+
+       1010 meera.reddy@apexcloud.in
+Meera Reddy
+
+
+6 rows selected.
+
+
+  ALERT_ID ALERT_TYPE			  RULE_TRIGGERED
+---------- ------------------------------ ------------------------------------------------------------------------------------------------------------------------------------------------------
+      7001 UNUSUAL_HOURS		  Rule 101: Net-banking transaction > 50,000 INR between 01:00-05:00
+      7002 RAPID_VELOCITY		  Rule 104: Consecutive transfers > 50,000 INR to same counterparty within 5 mins
+      7005 HIGH_AMOUNT			  Rule 101: Mobile App transfer > 50,000 INR illustrative rule
+
+3 rows selected.
+
+
+INVESTIGATION_ID INVESTIGATOR_ID STATUS
+---------------- --------------- ---------------
+NOTES
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	    9001	     302 UNDER REVIEW
+IP geolocation indicates overseas proxy used during midnight transfer. Awaiting telecom ISP logs.
+
+	    9004	     301 OPEN
+Offshore shell corporation escrow alert. Requested AML compliance documentation from correspondent bank.
+
+	    9005	     302 UNDER REVIEW
+Smurfing pattern detected across UPI channels. Linked multiple dummy accounts to same device hardware ID.
+
+
+3 rows selected.
+
+
+TOTAL_TX_COUNT TOTAL_VOLUME_INR AVERAGE_TX_AMOUNT LOWEST_TX_AMOUNT HIGHEST_TX_AMOUNT
+-------------- ---------------- ----------------- ---------------- -----------------
+	    18		2274450 	126358.33	      2000	      650000
+
+1 row selected.
+
+
+CHANNEL 	     TOTAL_TRANSACTIONS TOTAL_AMOUNT AVG_AMOUNT PEAK_AMOUNT
+-------------------- ------------------ ------------ ---------- -----------
+NET_BANKING			      8      1820000	 227500      650000
+ATM				      3       262000   87333.33      250000
+UPI				      4       128500	  32125       49500
+MOBILE_APP			      1        58000	  58000       58000
+POS				      2 	5950	   2975        3500
+
+5 rows selected.
+
+
+SEVERITY	ALERT_TYPE		       ALERT_COUNT
+--------------- ------------------------------ -----------
+MEDIUM		HIGH_AMOUNT				 1
+HIGH		STRUCTURING				 1
+HIGH		UNUSUAL_HOURS				 1
+HIGH		HIGH_AMOUNT				 1
+HIGH		SUSPICIOUS_CHANNEL			 1
+CRITICAL	RAPID_VELOCITY				 1
+CRITICAL	CROSS_BORDER				 1
+
+7 rows selected.
+
+
+ACCOUNT_ID TRANSACTIONS_CONDUCTED CUMULATIVE_VOLUME
+---------- ---------------------- -----------------
+      2006			2	     900000
+      2012			1	     500000
+      2004			3	     290000
+      2002			2	     255000
+      2005			1	     125000
+
+5 rows selected.
+
+
+CHANNEL 	       TX_COUNT AVG_TICKET_SIZE
+-------------------- ---------- ---------------
+NET_BANKING		      8 	 227500
+UPI			      4 	  32125
+ATM			      3        87333.33
+
+3 rows selected.
+
+
+CUSTOMER_ID CUSTOMER_NAME											  KYC_STATUS	  ACCOUNT_NUMBER       ACCOUNT_TYPE	       BALANCE ACCOUNT_STATUS
+----------- ----------------------------------------------------------------------------------------------------- --------------- -------------------- -------------------- ---------- ---------------
+       1001 Aarav Sharma											  VERIFIED	  SB-1001-01	       SAVINGS			 85400 ACTIVE
+       1002 Priya Nair												  VERIFIED	  CA-1002-01	       CURRENT			420000 ACTIVE
+       1003 Rohan Verma 											  VERIFIED	  CA-1003-02	       CURRENT			189000 ACTIVE
+       1003 Rohan Verma 											  VERIFIED	  SB-1003-01	       SAVINGS			 14500 ACTIVE
+       1004 Ananya Deshmukh											  VERIFIED	  SL-1004-01	       SALARY			125000 ACTIVE
+       1005 Vikram Singhania											  VERIFIED	  CA-1005-01	       CURRENT			980000 FROZEN
+       1005 Vikram Singhania											  VERIFIED	  NRI-1005-02	       NRI		       1540000 ACTIVE
+       1006 Sneha Patel 											  PENDING	  SB-1006-01	       SAVINGS			  3200 DORMANT
+       1007 Karan Mehta 											  VERIFIED	  SB-1007-01	       SAVINGS			 74000 ACTIVE
+       1008 Divya Iyer												  VERIFIED	  SL-1008-01	       SALARY			215000 ACTIVE
+       1009 Sameer Khan 											  REJECTED	  SB-1009-01	       SAVINGS			   500 FROZEN
+       1010 Meera Reddy 											  VERIFIED	  SB-1010-01	       SAVINGS			 62000 ACTIVE
+
+12 rows selected.
+
+
+CUSTOMER_NAME											      ACCOUNT_NUMBER	   TRANSACTION_ID TRANSACTION_TYPE	   AMOUNT CHANNEL
+----------------------------------------------------------------------------------------------------- -------------------- -------------- -------------------- ---------- --------------------
+TX_STATUS
+---------------
+Vikram Singhania										      CA-1005-01		    50007 TRANSFER		   650000 NET_BANKING
+FLAGGED
+
+Vikram Singhania										      NRI-1005-02		    50015 DEPOSIT		   500000 NET_BANKING
+COMPLETED
+
+Vikram Singhania										      CA-1005-01		    50006 WITHDRAWAL		   250000 ATM
+FLAGGED
+
+Priya Nair											      CA-1002-01		    50008 TRANSFER		   180000 NET_BANKING
+COMPLETED
+
+Ananya Deshmukh 										      SL-1004-01		    50003 DEPOSIT		   125000 NET_BANKING
+COMPLETED
+
+Rohan Verma											      CA-1003-02		    50017 TRANSFER		   110000 NET_BANKING
+FLAGGED
+
+Rohan Verma											      CA-1003-02		    50005 TRANSFER		    95000 NET_BANKING
+FLAGGED
+
+Rohan Verma											      CA-1003-02		    50004 TRANSFER		    85000 NET_BANKING
+FLAGGED
+
+Priya Nair											      CA-1002-01		    50018 PAYMENT		    75000 NET_BANKING
+COMPLETED
+
+Karan Mehta											      SB-1007-01		    50010 TRANSFER		    58000 MOBILE_APP
+FLAGGED
+
+
+10 rows selected.
+
+
+  ALERT_ID ALERT_TYPE			  SEVERITY	  TRANSACTION_ID     AMOUNT CHANNEL		 ACCOUNT_NUMBER       ALERT_STATUS
+---------- ------------------------------ --------------- -------------- ---------- -------------------- -------------------- ---------------
+      7001 UNUSUAL_HOURS		  HIGH			   50004      85000 NET_BANKING 	 CA-1003-02	      ESCALATED
+      7002 RAPID_VELOCITY		  CRITICAL		   50005      95000 NET_BANKING 	 CA-1003-02	      ESCALATED
+      7003 HIGH_AMOUNT			  HIGH			   50006     250000 ATM 		 CA-1005-01	      RESOLVED
+      7004 CROSS_BORDER 		  CRITICAL		   50007     650000 NET_BANKING 	 CA-1005-01	      ESCALATED
+      7005 HIGH_AMOUNT			  MEDIUM		   50010      58000 MOBILE_APP		 SB-1007-01	      PENDING
+      7006 STRUCTURING			  HIGH			   50011      49500 UPI 		 SB-1009-01	      ESCALATED
+      7007 SUSPICIOUS_CHANNEL		  HIGH			   50017     110000 NET_BANKING 	 CA-1003-02	      DISMISSED
+
+7 rows selected.
+
+>>> [5/11] Running 05_review2_subqueries_joins.sql (Subqueries, Dossier Join)...
+
+TRANSACTION_ID ACCOUNT_ID     AMOUNT CHANNEL		  STATUS	  SYSTEM_AVG_AMOUNT VARIANCE_FROM_AVG
+-------------- ---------- ---------- -------------------- --------------- ----------------- -----------------
+	 50007	     2006     650000 NET_BANKING	  FLAGGED		  126358.33	    523641.67
+	 50015	     2012     500000 NET_BANKING	  COMPLETED		  126358.33	    373641.67
+	 50006	     2006     250000 ATM		  FLAGGED		  126358.33	    123641.67
+	 50008	     2002     180000 NET_BANKING	  COMPLETED		  126358.33	     53641.67
+
+4 rows selected.
+
+
+CUSTOMER_ID CUSTOMER_NAME											  EMAIL 											       ACCOUNT_NUMBER	       BALANCE
+----------- ----------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- -------------------- ----------
+       1005 Vikram Singhania											  vikram.s@apexholdings.in									       NRI-1005-02	       1540000
+
+1 row selected.
+
+
+CUSTOMER_ID CUSTOMER_NAME											  EMAIL 											       RISK_SCORE
+----------- ----------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------- ----------
+       1009 Sameer Khan 											  sameer.k@shadownet.me 										       95
+       1005 Vikram Singhania											  vikram.s@apexholdings.in										       85
+       1003 Rohan Verma 											  rohan.verma@quickpay.in										       78
+       1007 Karan Mehta 											  karan.mehta@freelance.org										       62
+
+4 rows selected.
+
+
+TRANSACTION_ID ACCOUNT_ID TRANSACTION_TYPE	   AMOUNT CHANNEL
+-------------- ---------- -------------------- ---------- --------------------
+	 50007	     2006 TRANSFER		   650000 NET_BANKING
+
+1 row selected.
+
+
+TRANSACTION_ID ACCOUNT_ID TRANSACTION_TYPE	   AMOUNT
+-------------- ---------- -------------------- ----------
+	 50012	     2010 TRANSFER		    49000
+	 50011	     2010 DEPOSIT		    49500
+	 50010	     2008 TRANSFER		    58000
+	 50018	     2002 PAYMENT		    75000
+	 50004	     2004 TRANSFER		    85000
+	 50005	     2004 TRANSFER		    95000
+	 50017	     2004 TRANSFER		   110000
+	 50003	     2005 DEPOSIT		   125000
+	 50008	     2002 TRANSFER		   180000
+	 50006	     2006 WITHDRAWAL		   250000
+	 50015	     2012 DEPOSIT		   500000
+	 50007	     2006 TRANSFER		   650000
+
+12 rows selected.
+
+
+ACCOUNT_ID ACCOUNT_NUMBER	   BALANCE TOTAL_TRANSACTED
+---------- -------------------- ---------- ----------------
+      2004 CA-1003-02		    189000	     290000
+      2010 SB-1009-01		       500	      98500
+
+2 rows selected.
+
+
+ACCOUNT_ID ACCOUNT_NUMBER	ACCOUNT_TYPE	     STATUS
+---------- -------------------- -------------------- ---------------
+      2004 CA-1003-02		CURRENT 	     ACTIVE
+      2006 CA-1005-01		CURRENT 	     FROZEN
+
+2 rows selected.
+
+
+INVESTIGATOR_ID INVESTIGATOR_NAME										      DEPARTMENT					 EXPERIENCE_YEARS
+--------------- ----------------------------------------------------------------------------------------------------- -------------------------------------------------- ----------------
+	    304 Farhan Qureshi											      Financial Crimes						       11
+
+1 row selected.
+
+
+INVESTIGATOR_ID INVESTIGATOR_NAME										      DEPARTMENT					 INVESTIGATION_ID CASE_STATUS	  OUTCOME
+--------------- ----------------------------------------------------------------------------------------------------- -------------------------------------------------- ---------------- --------------- --------------------
+	    301 Rajesh Sen											      Anti-Money Laundering					     9002 CLOSED	  CONFIRMED_FRAUD
+	    301 Rajesh Sen											      Anti-Money Laundering					     9004 OPEN		  PENDING
+	    302 Kavita Mishra											      Cyber Intelligence					     9001 UNDER REVIEW	  PENDING
+	    302 Kavita Mishra											      Cyber Intelligence					     9005 UNDER REVIEW	  PENDING
+	    303 Suresh Bose											      Risk Operations						     9003 CLOSED	  FALSE_POSITIVE
+	    304 Farhan Qureshi											      Financial Crimes
+
+6 rows selected.
+
+
+  ALERT_ID ALERT_TYPE			  SEVERITY	  ALERT_STATUS	  INVESTIGATION_ID INVESTIGATION_PROGRESS
+---------- ------------------------------ --------------- --------------- ---------------- -----------------------
+      7001 UNUSUAL_HOURS		  HIGH		  ESCALATED		      9001 UNDER REVIEW
+      7002 RAPID_VELOCITY		  CRITICAL	  ESCALATED		      9002 CLOSED
+      7003 HIGH_AMOUNT			  HIGH		  RESOLVED		      9003 CLOSED
+      7004 CROSS_BORDER 		  CRITICAL	  ESCALATED		      9004 OPEN
+      7005 HIGH_AMOUNT			  MEDIUM	  PENDING			   NO_INVESTIGATION_OPENED
+      7006 STRUCTURING			  HIGH		  ESCALATED		      9005 UNDER REVIEW
+      7007 SUSPICIOUS_CHANNEL		  HIGH		  DISMISSED			   NO_INVESTIGATION_OPENED
+
+7 rows selected.
+
+
+  CASE_REF CASE_STATUS	   FINAL_OUTCOME	  ALERT_ID ALERT_TYPE			  RISK_LEVEL	       TX_ID AMOUNT_INR CHANNEL 	     TRANSACTION_DATE								 ACCOUNT_NUMBER
+---------- --------------- -------------------- ---------- ------------------------------ --------------- ---------- ---------- -------------------- --------------------------------------------------------------------------- --------------------
+CUSTOMER_NAME											      KYC_STATUS      RISK_SCORE ASSIGNED_LEAD
+----------------------------------------------------------------------------------------------------- --------------- ---------- -----------------------------------------------------------------------------------------------------
+LEAD_DEPT
+--------------------------------------------------
+      9001 UNDER REVIEW    PENDING		      7001 UNUSUAL_HOURS		  HIGH		       50004	  85000 NET_BANKING	     01-FEB-24 02.14.00.000000 AM						 CA-1003-02
+Rohan Verma											      VERIFIED		      78 Kavita Mishra
+Cyber Intelligence
+
+      9002 CLOSED	   CONFIRMED_FRAUD	      7002 RAPID_VELOCITY		  CRITICAL	       50005	  95000 NET_BANKING	     01-FEB-24 02.18.00.000000 AM						 CA-1003-02
+Rohan Verma											      VERIFIED		      78 Rajesh Sen
+Anti-Money Laundering
+
+      9003 CLOSED	   FALSE_POSITIVE	      7003 HIGH_AMOUNT			  HIGH		       50006	 250000 ATM		     03-FEB-24 02.20.00.000000 PM						 CA-1005-01
+Vikram Singhania										      VERIFIED		      85 Suresh Bose
+Risk Operations
+
+      9004 OPEN 	   PENDING		      7004 CROSS_BORDER 		  CRITICAL	       50007	 650000 NET_BANKING	     04-FEB-24 11.45.00.000000 AM						 CA-1005-01
+Vikram Singhania										      VERIFIED		      85 Rajesh Sen
+Anti-Money Laundering
+
+      9005 UNDER REVIEW    PENDING		      7006 STRUCTURING			  HIGH		       50011	  49500 UPI		     16-FEB-24 08.30.00.000000 AM						 SB-1009-01
+Sameer Khan											      REJECTED		      95 Kavita Mishra
+Cyber Intelligence
+
+
+5 rows selected.
+
+>>> [6/11] Running 06_views.sql (Analytical & Operational Views)...
+
+View created.
+
+
+Comment created.
+
+
+View created.
+
+
+Comment created.
+
+
+View created.
+
+
+Comment created.
+
+
+View created.
+
+
+Comment created.
+
+=== Testing VW_HIGH_RISK_TRANSACTIONS ===
+
+TRANSACTION_ID CUSTOMER_NAME												 AMOUNT ALERT_SEVERITY	TX_STATUS
+-------------- ----------------------------------------------------------------------------------------------------- ---------- --------------- ---------------
+	 50004 Rohan Verma												  85000 HIGH		FLAGGED
+	 50005 Rohan Verma												  95000 CRITICAL	FLAGGED
+	 50006 Vikram Singhania 											 250000 HIGH		FLAGGED
+	 50007 Vikram Singhania 											 650000 CRITICAL	FLAGGED
+	 50010 Karan Mehta												  58000 MEDIUM		FLAGGED
+
+5 rows selected.
+
+=== Testing VW_INVESTIGATION_SUMMARY ===
+
+INVESTIGATION_ID INVESTIGATION_S LEAD_INVESTIGATOR										       OUTCOME		    DURATION_DAYS
+---------------- --------------- ----------------------------------------------------------------------------------------------------- -------------------- -------------
+	    9002 CLOSED 	 Rajesh Sen											       CONFIRMED_FRAUD			4
+	    9004 OPEN		 Rajesh Sen											       PENDING			    991.5
+	    9001 UNDER REVIEW	 Kavita Mishra											       PENDING			    994.5
+	    9005 UNDER REVIEW	 Kavita Mishra											       PENDING			    979.5
+	    9003 CLOSED 	 Suresh Bose											       FALSE_POSITIVE			1
+
+5 rows selected.
+
+=== Testing VW_CUSTOMER_FRAUD_EXPOSURE ===
+
+CUSTOMER_ID CUSTOMER_NAME											  RISK_SCORE FLAGGED_TX_COUNT ALERTS_INCURRED
+----------- ----------------------------------------------------------------------------------------------------- ---------- ---------------- ---------------
+       1009 Sameer Khan 												  95		    2		    1
+       1005 Vikram Singhania												  85		    2		    2
+       1003 Rohan Verma 												  78		    3		    3
+       1007 Karan Mehta 												  62		    1		    1
+
+4 rows selected.
+
+=== Testing VW_UNASSIGNED_ALERTS ===
+
+  ALERT_ID TRANSACTION_ID     AMOUNT ALERT_TYPE 		    SEVERITY
+---------- -------------- ---------- ------------------------------ ---------------
+      7005	    50010      58000 HIGH_AMOUNT		    MEDIUM
+
+1 row selected.
+
+>>> [7/11] Running 07_procedures.sql (Compiling Stored Procedures)...
+
+Procedure created.
+
+
+Procedure created.
+
+
+Procedure created.
+
+[SUCCESS] Stored Procedures compiled successfully.
+>>> [8/11] Running 08_functions.sql (Compiling Stored Functions)...
+
+Function created.
+
+
+Function created.
+
+
+Function created.
+
+=== Testing Stored Functions in SQL Statements ===
+
+ACCOUNT_ID ACCOUNT_NUMBER	ACCOUNT_TYPE		BALANCE TOTAL_TRANSACTED_VOLUME FRAUD_ALERTS_COUNT
+---------- -------------------- -------------------- ---------- ----------------------- ------------------
+      2006 CA-1005-01		CURRENT 		 980000 		 900000 		 2
+      2012 NRI-1005-02		NRI			1540000 		 500000 		 0
+      2004 CA-1003-02		CURRENT 		 189000 		 290000 		 3
+      2002 CA-1002-01		CURRENT 		 420000 		 255000 		 0
+      2005 SL-1004-01		SALARY			 125000 		 125000 		 0
+      2010 SB-1009-01		SAVINGS 		    500 		  98500 		 1
+      2008 SB-1007-01		SAVINGS 		  74000 		  58000 		 1
+      2001 SB-1001-01		SAVINGS 		  85400 		  17450 		 0
+      2011 SB-1010-01		SAVINGS 		  62000 		  15000 		 0
+      2003 SB-1003-01		SAVINGS 		  14500 		  10000 		 0
+      2009 SL-1008-01		SALARY			 215000 		   3500 		 0
+      2007 SB-1006-01		SAVINGS 		   3200 		   2000 		 0
+
+12 rows selected.
+
+
+CUSTOMER_ID CUSTOMER_NAME											  RISK_SCORE
+----------- ----------------------------------------------------------------------------------------------------- ----------
+COMPUTED_RISK_TIER
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+       1009 Sameer Khan 												  95
+CRITICAL_RISK
+
+       1005 Vikram Singhania												  85
+CRITICAL_RISK
+
+       1003 Rohan Verma 												  78
+CRITICAL_RISK
+
+       1007 Karan Mehta 												  62
+HIGH_RISK
+
+       1006 Sneha Patel 												  45
+MODERATE_RISK
+
+       1010 Meera Reddy 												  25
+LOW_RISK
+
+       1002 Priya Nair													  20
+LOW_RISK
+
+       1001 Aarav Sharma												  15
+LOW_RISK
+
+       1004 Ananya Deshmukh												  10
+LOW_RISK
+
+       1008 Divya Iyer													   8
+LOW_RISK
+
+
+10 rows selected.
+
+>>> [9/11] Running 09_cursors.sql (Executing Explicit Cursor & Cursor FOR Loop)...
+============================================================================
+DEMO 1: EXPLICIT CURSOR - High Risk Fraud Alert Surveillance Docket
+============================================================================
+------------------------------------------------------------------------------------------------------
+ALERT ID  SEVERITY    TYPE		  AMOUNT (INR)	 ACCOUNT       CUSTOMER
+------------------------------------------------------------------------------------------------------
+7004	  CRITICAL    CROSS_BORDER	       650,000.00CA-1005-01    Vikram Singhania
+Rule: Rule 108: Offshore escrow transfer > 500,000 INR on flagged account
+7003	  HIGH	      HIGH_AMOUNT	       250,000.00CA-1005-01    Vikram Singhania
+Rule: Rule 102: ATM withdrawal cumulative amount > 100,000 INR threshold
+7007	  HIGH	      SUSPICIOUS_CHANNEL       110,000.00CA-1003-02    Rohan Verma
+Rule: Rule 109: High-risk counterparty crypto-gateway connection
+7002	  CRITICAL    RAPID_VELOCITY		95,000.00CA-1003-02    Rohan Verma
+Rule: Rule 104: Consecutive transfers > 50,000 INR to same counterparty within 5 mins
+7001	  HIGH	      UNUSUAL_HOURS		85,000.00CA-1003-02    Rohan Verma
+Rule: Rule 101: Net-banking transaction > 50,000 INR between 01:00-05:00
+7006	  HIGH	      STRUCTURING		49,500.00SB-1009-01    Sameer Khan
+Rule: Rule 106: Structuring near 50k threshold under KYC-rejected account
+------------------------------------------------------------------------------------------------------
+TOTAL ALERTS PROCESSED : 6
+CUMULATIVE RISK EXPOSURE:    1,239,500.00 INR
+------------------------------------------------------------------------------------------------------
+
+PL/SQL procedure successfully completed.
+
+============================================================================
+DEMO 2: PARAMETERIZED CURSOR FOR LOOP - Active Investigations Caseload
+============================================================================
+>>> ACTIVE CASELOAD FOR STATUS: [UNDER REVIEW] <<<
+------------------------------------------------------------------------------------------------------
+Case #9001 | Lead: Kavita Mishra      | Dept: Cyber Intelligence     | Alert: UNUSUAL_HOURS	 | Value:   85,000.00 INR
+Case #9005 | Lead: Kavita Mishra      | Dept: Cyber Intelligence     | Alert: STRUCTURING	 | Value:   49,500.00 INR
+Total cases currently under active review: 2
+------------------------------------------------------------------------------------------------------
+
+PL/SQL procedure successfully completed.
+
+[SUCCESS] Cursor scripts executed successfully.
+>>> [10/11] Running 10_triggers_audit.sql (Compiling & Verifying Triggers)...
+
+Trigger created.
+
+
+Trigger created.
+
+=== Executing Trigger Verification Updates ===
+
+Savepoint created.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+Commit complete.
+
+=== Querying INVESTIGATION_AUDIT Table ===
+
+  AUDIT_ID INVESTIGATION_ID OLD_STATUS	    NEW_STATUS	    CHANGED_BY					       CHANGE_TIME	   CHANGE_ACTION
+---------- ---------------- --------------- --------------- -------------------------------------------------- ------------------- --------------------
+	 1	       9004 OPEN	    UNDER REVIEW    FRAUDLENS_USER				       2026-10-22 11:56:47 STATUS_TRANSITION
+
+1 row selected.
+
+=== Querying ALERT_AUDIT Table ===
+
+  AUDIT_ID   ALERT_ID OLD_STATUS      NEW_STATUS      CHANGED_BY					 CHANGE_TIME
+---------- ---------- --------------- --------------- -------------------------------------------------- -------------------
+REMARKS
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	 1	 7005 PENDING	      ESCALATED       FRAUDLENS_USER					 2026-10-22 11:56:47
+Triggered by automated triage or compliance operator update
+
+
+1 row selected.
+
+
+1 row updated.
+
+
+1 row updated.
+
+
+2 rows deleted.
+
+
+2 rows deleted.
+
+
+Commit complete.
+
+[SUCCESS] Audit triggers compiled, tested, and verified. Sample dataset restored to canonical state.
+>>> [11/11] Running 11_test_cases.sql (Running Full Positive & Negative Test Suite)...
+============================================================================
+TEST SUITE 1: POSITIVE FUNCTIONAL WORKFLOWS
+============================================================================
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+Commit complete.
+
+
+Savepoint created.
+
+
+1 row created.
+
+[TEST 1.1 PASSED] High value transaction 59999 inserted successfully.
+[SUCCESS] Generated Fraud Alert 7008 for Transaction 59999.
+[TEST 1.2 PASSED] Procedure SP_EVALUATE_AND_ALERT_TRANSACTION created alert: 7008
+
+PL/SQL procedure successfully completed.
+
+
+1 row created.
+
+[TEST 1.3 PASSED] Investigation 9999 successfully opened and linked to Alert.
+[SUCCESS] Assigned Investigator Kavita Mishra (ID: 302) to Case 9999.
+[TEST 1.4 PASSED] SP_ASSIGN_INVESTIGATOR successfully assigned Investigator 302.
+
+PL/SQL procedure successfully completed.
+
+[SUCCESS] Case 9999 status progressed from OPEN to CLOSED.
+[TEST 1.5 PASSED] SP_UPDATE_INVESTIGATION_STATUS successfully closed case 9999.
+
+PL/SQL procedure successfully completed.
+
+[TEST 1.6 PASSED] Audit trigger successfully recorded 1 lifecycle events for Case 9999.
+
+PL/SQL procedure successfully completed.
+
+[TEST 1.7 PASSED] Functions verified. Account 2001 Volume: 92450 INR, Customer 1001 Tier: LOW_RISK
+
+PL/SQL procedure successfully completed.
+
+============================================================================
+TEST SUITE 2: NEGATIVE & CONSTRAINT VALIDATION (EXPECTED REJECTIONS)
+============================================================================
+[TEST 2.1 PASSED] Negative amount blocked by CHECK constraint: ORA-02290: check constraint (FRAUDLENS_USER.CHK_TX_AMOUNT) violated
+
+PL/SQL procedure successfully completed.
+
+[TEST 2.2 PASSED] Duplicate email blocked by UNIQUE constraint: ORA-00001: unique constraint (FRAUDLENS_USER.UQ_CUSTOMER_EMAIL) violated on table FRAUDLENS_USER.CUSTOMER columns (EMAIL)
+ORA-03301:
+(ORA-00001 details) row with column values (EMAIL:'aarav.sharma@finmail.in') already exists
+
+PL/SQL procedure successfully completed.
+
+[TEST 2.3 PASSED] Orphan account blocked by FOREIGN KEY constraint: ORA-02291: integrity constraint (FRAUDLENS_USER.FK_ACC_CUSTOMER) violated - parent key not found
+
+PL/SQL procedure successfully completed.
+
+[FAILURE] SP_ASSIGN_INVESTIGATOR failed: ORA-20004: Error: Investigator Farhan Qureshi (ID 304) is INACTIVE.
+[TEST 2.4 PASSED] Inactive investigator blocked with exception: ORA-20004: Error: Investigator Farhan Qureshi (ID 304) is INACTIVE.
+
+PL/SQL procedure successfully completed.
+
+[FAILURE] SP_UPDATE_INVESTIGATION_STATUS failed: ORA-20012: Closing a case requires a definitive outcome (CONFIRMED_FRAUD, FALSE_POSITIVE, or INCONCLUSIVE).
+[TEST 2.5 PASSED] Closure without outcome blocked with exception: ORA-20012: Closing a case requires a definitive outcome (CONFIRMED_FRAUD, FALSE_POSITIVE, or INCONCLUSIVE).
+
+PL/SQL procedure successfully completed.
+
+[ERROR] FN_GET_TOTAL_TX_AMOUNT failed: ORA-20030: Account ID 999999 does not exist.
+[TEST 2.6 PASSED] Invalid account ID trapped with exception: ORA-20030: Account ID 999999 does not exist.
+
+PL/SQL procedure successfully completed.
+
+
+Rollback complete.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+0 rows deleted.
+
+
+Commit complete.
+
+============================================================================
+[COMPLETE] All 13 Positive & Negative Test Cases Verified Successfully!
+Test suite rolled back and cleaned up. Core sample dataset preserved.
+============================================================================
+============================================================================
+[FINISHED] FraudLens Complete Project Successfully Executed!
+Both Review 1 and Review 2 requirements are 100% complete and verified.
+============================================================================

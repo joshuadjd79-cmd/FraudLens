@@ -1,0 +1,20 @@
+[CHECK CONSTRAINED DEFENDED] ORA-02290: check constraint (FRAUDLENS_USER.CHK_TX_AMOUNT) violated
+
+PL/SQL procedure successfully completed.
+
+[UNIQUE CONSTRAINED DEFENDED] ORA-00001: unique constraint (FRAUDLENS_USER.UQ_CUSTOMER_EMAIL) violated on table
+FRAUDLENS_USER.CUSTOMER columns (EMAIL)
+ORA-03301: (ORA-00001 details) row with column values
+(EMAIL:'aarav.sharma@finmail.in') already exists
+
+PL/SQL procedure successfully completed.
+
+[FOREIGN KEY DEFENDED] ORA-02291: integrity constraint (FRAUDLENS_USER.FK_ACC_CUSTOMER) violated - parent key not found
+
+PL/SQL procedure successfully completed.
+
+[FAILURE] SP_ASSIGN_INVESTIGATOR failed: ORA-20002: Error: Cannot reassign closed Investigation ID 9002.
+[BUSINESS RULE EXCEPTION] ORA-20002: Error: Cannot reassign closed Investigation ID 9002.
+
+PL/SQL procedure successfully completed.
+
