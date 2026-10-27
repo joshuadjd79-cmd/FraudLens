@@ -167,6 +167,7 @@ def build_review2_pdf():
         [Paragraph("Course & Code:", styles['CoverMetaLabel']), Paragraph("Database Management Systems (BCSE304L) / DBMS Laboratory", styles['CoverMetaVal'])],
         [Paragraph("Institution:", styles['CoverMetaLabel']), Paragraph("Vellore Institute of Technology (VIT), Vellore", styles['CoverMetaVal'])],
         [Paragraph("Target Database:", styles['CoverMetaLabel']), Paragraph("Oracle Database 11g/12c/19c/21c/23c Standard SQL & PL/SQL", styles['CoverMetaVal'])],
+        [Paragraph("Faculty Guide:", styles['CoverMetaLabel']), Paragraph("<b>Prof. Kanagaraj K</b>", styles['CoverMetaVal'])],
         [Paragraph("Review Scope:", styles['CoverMetaLabel']), Paragraph("<b>Comprehensive Review 1 + Review 2 Final Project Submission</b>", styles['CoverMetaVal'])],
     ]
     t_meta = Table(meta_data, colWidths=[130, 375])

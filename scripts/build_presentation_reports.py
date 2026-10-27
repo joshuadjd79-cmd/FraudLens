@@ -16,27 +16,28 @@ ASSETS_DIR = os.path.join(BASE_DIR, "docs", "assets")
 
 PDF_R1_UPDATED = os.path.join(BASE_DIR, "FraudLens_Review_1_Updated.pdf")
 PDF_COMBINED = os.path.join(BASE_DIR, "FraudLens_Review_1_and_Review_2_Combined.pdf")
+PDF_R2_PRESENTATION = os.path.join(BASE_DIR, "FraudLens_Review_2_Presentation.pdf")
 
 # Dimensions for 16:9 widescreen presentation slides
 PAGE_W = 960.0
 PAGE_H = 540.0
 
-# Color Palette Constants
-DARK_BG = colors.HexColor("#0B192C")         # Deep Midnight Navy
-DARK_CARD = colors.HexColor("#16243E")       # Darker Card Surface
-LIGHT_BG = colors.HexColor("#F8FAFC")        # Off-white / Slate 50
+# Color Palette Constants (Sleek Obsidian Black & Maroon Theme)
+DARK_BG = colors.HexColor("#0B090A")         # Deep Obsidian Black
+DARK_CARD = colors.HexColor("#171214")       # Deep Charcoal-Maroon Card Surface
+LIGHT_BG = colors.HexColor("#F8F7F8")        # Crisp Neutral Ivory / Off-White
 WHITE = colors.HexColor("#FFFFFF")
-SLATE_900 = colors.HexColor("#0F172A")       # Primary text
-SLATE_700 = colors.HexColor("#334155")       # Body text
-SLATE_500 = colors.HexColor("#64748B")       # Subtitles / Muted text
-SLATE_300 = colors.HexColor("#CBD5E1")       # Border lines
-SLATE_200 = colors.HexColor("#E2E8F0")       # Light card borders
-AMBER = colors.HexColor("#D97706")           # Accent orange
-TEAL = colors.HexColor("#0D9488")            # Accent teal / green
-BLUE = colors.HexColor("#0284C7")            # Accent sky blue
-NAVY_HEADER = colors.HexColor("#1E3A8A")     # Table header blue
-CODE_BG = colors.HexColor("#0B132B")         # Dark editor code box
-CODE_BORDER = colors.HexColor("#1E293B")     # Code border
+SLATE_900 = colors.HexColor("#100C0E")       # Pitch Black Primary text
+SLATE_700 = colors.HexColor("#2B2426")       # Deep Charcoal Body text
+SLATE_500 = colors.HexColor("#6E6266")       # Subtitles / Muted text
+SLATE_300 = colors.HexColor("#D8D0D3")       # Border lines
+SLATE_200 = colors.HexColor("#E5DFE2")       # Light card borders
+AMBER = colors.HexColor("#9F1239")           # Vibrant Crimson Maroon Accent
+TEAL = colors.HexColor("#881337")            # Primary Deep Maroon Accent
+BLUE = colors.HexColor("#701A28")            # Deep Wine Maroon Accent
+NAVY_HEADER = colors.HexColor("#540E1F")     # Velvet Burgundy Table Header
+CODE_BG = colors.HexColor("#0A0809")         # Deep Obsidian Code Box
+CODE_BORDER = colors.HexColor("#26171C")     # Code Border
 
 def setup_styles():
     styles = getSampleStyleSheet()
@@ -47,13 +48,13 @@ def setup_styles():
     styles.add(ParagraphStyle('SlideSubhead', fontName='Helvetica', fontSize=10, leading=13, textColor=SLATE_500))
     
     # Dark Slide Styles
-    styles.add(ParagraphStyle('DarkTitleCat', fontName='Helvetica-Bold', fontSize=8.5, leading=11, textColor=colors.HexColor("#38BDF8"), textTransform='uppercase'))
+    styles.add(ParagraphStyle('DarkTitleCat', fontName='Helvetica-Bold', fontSize=8.5, leading=11, textColor=colors.HexColor("#FB7185"), textTransform='uppercase'))
     styles.add(ParagraphStyle('DarkMainTitle', fontName='Helvetica-Bold', fontSize=32, leading=38, textColor=WHITE))
-    styles.add(ParagraphStyle('DarkSubtitle', fontName='Helvetica-Bold', fontSize=15, leading=19, textColor=colors.HexColor("#93C5FD")))
-    styles.add(ParagraphStyle('DarkDesc', fontName='Helvetica', fontSize=10.5, leading=15, textColor=colors.HexColor("#CBD5E1")))
+    styles.add(ParagraphStyle('DarkSubtitle', fontName='Helvetica-Bold', fontSize=15, leading=19, textColor=colors.HexColor("#F5EBEB")))
+    styles.add(ParagraphStyle('DarkDesc', fontName='Helvetica', fontSize=10.5, leading=15, textColor=colors.HexColor("#D4C7CB")))
     styles.add(ParagraphStyle('DarkTeam', fontName='Helvetica-Bold', fontSize=10, leading=14, textColor=WHITE))
-    styles.add(ParagraphStyle('DarkMetaLabel', fontName='Helvetica-Bold', fontSize=9, leading=12, textColor=colors.HexColor("#60A5FA")))
-    styles.add(ParagraphStyle('DarkMetaVal', fontName='Helvetica', fontSize=8.5, leading=11, textColor=colors.HexColor("#94A3B8")))
+    styles.add(ParagraphStyle('DarkMetaLabel', fontName='Helvetica-Bold', fontSize=9, leading=12, textColor=colors.HexColor("#FB7185")))
+    styles.add(ParagraphStyle('DarkMetaVal', fontName='Helvetica', fontSize=8.5, leading=11, textColor=colors.HexColor("#A89DA1")))
     
     # Card Styles
     styles.add(ParagraphStyle('CardTagAmber', fontName='Helvetica-Bold', fontSize=7.5, leading=9, textColor=AMBER, textTransform='uppercase'))
@@ -68,7 +69,7 @@ def setup_styles():
     styles.add(ParagraphStyle('TCell', fontName='Helvetica', fontSize=7.5, leading=10, textColor=SLATE_900))
     styles.add(ParagraphStyle('TCellBold', fontName='Helvetica-Bold', fontSize=7.5, leading=10, textColor=SLATE_900))
     styles.add(ParagraphStyle('TCellMono', fontName='Courier', fontSize=7, leading=9, textColor=SLATE_900))
-    styles.add(ParagraphStyle('CodeLine', fontName='Courier', fontSize=6.5, leading=8.5, textColor=colors.HexColor("#E2E8F0")))
+    styles.add(ParagraphStyle('CodeLine', fontName='Courier', fontSize=6.5, leading=8.5, textColor=colors.HexColor("#F5EBEB")))
     styles.add(ParagraphStyle('FigCaption', fontName='Helvetica-Oblique', fontSize=8, leading=10, textColor=SLATE_500, alignment=1))
     
     return styles
@@ -127,9 +128,9 @@ def draw_code_box(c, x, y, w, h, title, code_lines):
     
     # Title bar
     c.setFont("Helvetica-Bold", 7.5)
-    c.setFillColor(colors.HexColor("#93C5FD"))
+    c.setFillColor(colors.HexColor("#FB7185"))
     c.drawString(x + 12, y + h - 14, title)
-    c.setStrokeColor(colors.HexColor("#1E293B"))
+    c.setStrokeColor(colors.HexColor("#26171C"))
     c.setLineWidth(0.5)
     c.line(x + 10, y + h - 18, x + w - 10, y + h - 18)
     
@@ -153,7 +154,7 @@ def build_slide_1(c):
     # Right decorative area
     c.setFillColor(DARK_CARD)
     c.roundRect(690, 40, 220, 460, 10, stroke=0, fill=1)
-    c.setStrokeColor(colors.HexColor("#1F3354"))
+    c.setStrokeColor(colors.HexColor("#26171C"))
     c.setLineWidth(0.6)
     for gx in range(710, 900, 35):
         c.line(gx, 50, gx, 490)
@@ -163,13 +164,13 @@ def build_slide_1(c):
     # Geometric circles
     c.setFillColor(AMBER)
     c.circle(760, 380, 34, stroke=0, fill=1)
-    c.setFillColor(colors.HexColor("#93C5FD"))
+    c.setFillColor(colors.HexColor("#F5EBEB"))
     c.circle(830, 320, 22, stroke=0, fill=1)
     c.setFillColor(TEAL)
     c.circle(790, 220, 46, stroke=0, fill=1)
     
     c.setFont("Helvetica-Bold", 7.5)
-    c.setFillColor(colors.HexColor("#94A3B8"))
+    c.setFillColor(colors.HexColor("#A89DA1"))
     c.drawString(715, 65, "COMPUTER SCIENCE & ENGINEERING")
     
     # Left Content
@@ -181,10 +182,13 @@ def build_slide_1(c):
     draw_para(c, p_desc, STYLES['DarkDesc'], 60, 310, 580, 40)
     
     p_team = "D JOSHUA DANIEL &nbsp; <b>24BCE0436</b> &nbsp;&nbsp;|&nbsp;&nbsp; M SARYU &nbsp; <b>24BCE2524</b>"
-    draw_para(c, p_team, STYLES['DarkTeam'], 60, 220, 600, 20)
+    draw_para(c, p_team, STYLES['DarkTeam'], 60, 230, 600, 20)
     
-    draw_para(c, "Review 1  /  Relational Schema Design & SQL Foundations", STYLES['DarkMetaLabel'], 60, 145, 600, 15)
-    draw_para(c, "BCSE304L Database Management Systems • SCOPE, VIT Vellore", STYLES['DarkMetaVal'], 60, 125, 600, 15)
+    p_faculty = "Faculty: <b>Kanagaraj K</b>"
+    draw_para(c, p_faculty, STYLES['DarkTeam'], 60, 195, 600, 20)
+    
+    draw_para(c, "Review 1  /  Relational Schema Design & SQL Foundations", STYLES['DarkMetaLabel'], 60, 155, 600, 15)
+    draw_para(c, "BCSE304L Database Management Systems • SCOPE, VIT Vellore", STYLES['DarkMetaVal'], 60, 135, 600, 15)
     
     c.restoreState()
 
@@ -638,16 +642,23 @@ def build_slide_15(c):
     
     # 2 Student Cards
     draw_card(c, 60, 180, 270, 120, bg_color=DARK_CARD)
-    c.setStrokeColor(colors.HexColor("#1E3A5F"))
+    c.setStrokeColor(colors.HexColor("#331E24"))
     c.roundRect(60, 180, 270, 120, 6, stroke=1, fill=0)
     draw_para(c, "<b>D Joshua Daniel</b>", STYLES['DarkTeam'], 80, 180 + 120 - 18, 240, 20)
     draw_para(c, "Reg No: 24BCE0436<br/>B.Tech CSE • VIT Vellore", STYLES['DarkMetaVal'], 80, 180 + 120 - 45, 240, 40)
     
     draw_card(c, 360, 180, 270, 120, bg_color=DARK_CARD)
-    c.setStrokeColor(colors.HexColor("#1E3A5F"))
+    c.setStrokeColor(colors.HexColor("#331E24"))
     c.roundRect(360, 180, 270, 120, 6, stroke=1, fill=0)
     draw_para(c, "<b>M Saryu</b>", STYLES['DarkTeam'], 380, 180 + 120 - 18, 240, 20)
     draw_para(c, "Reg No: 24BCE2524<br/>B.Tech CSE • VIT Vellore", STYLES['DarkMetaVal'], 380, 180 + 120 - 45, 240, 40)
+    
+    # Faculty Card
+    draw_card(c, 660, 180, 250, 120, bg_color=DARK_CARD)
+    c.setStrokeColor(colors.HexColor("#331E24"))
+    c.roundRect(660, 180, 250, 120, 6, stroke=1, fill=0)
+    draw_para(c, "<b>Kanagaraj K</b>", STYLES['DarkTeam'], 680, 180 + 120 - 18, 220, 20)
+    draw_para(c, "Faculty Guide<br/>SCOPE • VIT Vellore", STYLES['DarkMetaVal'], 680, 180 + 120 - 45, 220, 40)
     
     draw_para(c, "<b>Thank you  /  Questions</b>", STYLES['DarkSubtitle'], 60, 115, 400, 25)
     
@@ -663,9 +674,9 @@ def build_slide_16(c):
     c.setFillColor(DARK_BG)
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
     
-    draw_para(c, "DATABASE MANAGEMENT SYSTEMS  /  CASE STUDY • REVIEW 2 EXTENSION", STYLES['DarkTitleCat'], 60, 475, 700, 15)
-    draw_para(c, "Review 2: Advanced Implementation", STYLES['DarkMainTitle'], 60, 435, 800, 40)
-    draw_para(c, "Procedural Intelligence, Automated Surveillance & Forensic Audit Defense", STYLES['DarkSubtitle'], 60, 375, 800, 25)
+    draw_para(c, "DATABASE MANAGEMENT SYSTEMS  /  CASE STUDY • REVIEW 2 EXTENSION", STYLES['DarkTitleCat'], 60, 485, 600, 15)
+    draw_para(c, "Review 2: Advanced Implementation", STYLES['DarkMainTitle'], 60, 450, 600, 40)
+    draw_para(c, "Procedural Intelligence, Automated Surveillance & Forensic Audit Defense", STYLES['DarkSubtitle'], 60, 395, 600, 25)
     
     p_desc = (
         "Transitioning from static 3NF relational modeling to active procedural database surveillance. "
@@ -673,13 +684,38 @@ def build_slide_16(c):
         "procedures with strict state progression, deterministic scoring functions, row-level audit triggers, "
         "and complete exception recovery executed on Oracle 23ai Free."
     )
-    draw_para(c, p_desc, STYLES['DarkDesc'], 60, 320, 600, 75)
+    draw_para(c, p_desc, STYLES['DarkDesc'], 60, 345, 590, 75)
     
-    draw_card(c, 690, 80, 220, 420, bg_color=DARK_CARD)
-    c.setStrokeColor(colors.HexColor("#1E3A5F"))
-    c.roundRect(690, 80, 220, 420, 10, stroke=1, fill=0)
+    # Prominent Student & Registration Cards
+    cw = 285
+    ch = 95
+    cy = 150
     
-    draw_para(c, "REVIEW 2 MODULES", STYLES['DarkTitleCat'], 710, 480, 190, 15)
+    # Student 1 Card
+    draw_card(c, 60, cy, cw, ch, bg_color=DARK_CARD, accent_color=AMBER)
+    c.setStrokeColor(colors.HexColor("#331E24"))
+    c.roundRect(60, cy, cw, ch, 6, stroke=1, fill=0)
+    draw_para(c, "<b>D Joshua Daniel</b>", STYLES['DarkTeam'], 78, cy + ch - 16, cw - 28, 18)
+    p_s1 = "Registration No: <font color='#FB7185'><b>24BCE0436</b></font><br/>B.Tech CSE • SCOPE, VIT Vellore"
+    draw_para(c, p_s1, STYLES['DarkMetaVal'], 78, cy + ch - 38, cw - 28, 45)
+    
+    # Student 2 Card
+    draw_card(c, 365, cy, cw, ch, bg_color=DARK_CARD, accent_color=TEAL)
+    c.setStrokeColor(colors.HexColor("#331E24"))
+    c.roundRect(365, cy, cw, ch, 6, stroke=1, fill=0)
+    draw_para(c, "<b>M Saryu</b>", STYLES['DarkTeam'], 383, cy + ch - 16, cw - 28, 18)
+    p_s2 = "Registration No: <font color='#FB7185'><b>24BCE2524</b></font><br/>B.Tech CSE • SCOPE, VIT Vellore"
+    draw_para(c, p_s2, STYLES['DarkMetaVal'], 383, cy + ch - 38, cw - 28, 45)
+    
+    # Faculty Guide & Course Meta
+    draw_para(c, "Faculty Guide: <b>Prof. Kanagaraj K</b> &nbsp;&nbsp;|&nbsp;&nbsp; Course: <b>BCSE304L Database Management Systems</b>", STYLES['DarkMetaLabel'], 60, 115, 600, 18)
+    
+    # Right Modules Card
+    draw_card(c, 675, 75, 235, 425, bg_color=DARK_CARD)
+    c.setStrokeColor(colors.HexColor("#331E24"))
+    c.roundRect(675, 75, 235, 425, 10, stroke=1, fill=0)
+    
+    draw_para(c, "REVIEW 2 MODULES", STYLES['DarkTitleCat'], 695, 475, 195, 15)
     
     mod_items = [
         "1. Advanced Subqueries",
@@ -693,13 +729,11 @@ def build_slide_16(c):
         "9. 13-Case Test Harness",
         "10. Compliance Matrix"
     ]
-    curr_top = 455
+    curr_top = 450
     for mi in mod_items:
-        draw_para(c, f"• {mi}", STYLES['DarkMetaVal'], 710, curr_top, 190, 16)
+        draw_para(c, f"• {mi}", STYLES['DarkMetaVal'], 695, curr_top, 195, 16)
         curr_top -= 24
         
-    draw_para(c, "D Joshua Daniel (24BCE0436)  |  M Saryu (24BCE2524)", STYLES['DarkTeam'], 60, 115, 600, 15)
-    
     c.restoreState()
 
 def build_slide_17(c):
@@ -993,20 +1027,20 @@ def build_slide_29(c):
     draw_para(c, p_desc, STYLES['DarkDesc'], 60, 320, 780, 45)
     
     draw_card(c, 60, 140, 340, 120, bg_color=DARK_CARD)
-    c.setStrokeColor(colors.HexColor("#1E3A5F"))
+    c.setStrokeColor(colors.HexColor("#331E24"))
     c.roundRect(60, 140, 340, 120, 6, stroke=1, fill=0)
     draw_para(c, "<b>D Joshua Daniel</b>", STYLES['DarkTeam'], 80, 140 + 120 - 18, 300, 20)
     p_joshua = "Registration No: <b>24BCE0436</b><br/>Bachelor of Technology in Computer Science & Engineering<br/>School of Computer Science & Engineering (SCOPE)<br/>Vellore Institute of Technology (VIT), Vellore"
     draw_para(c, p_joshua, STYLES['DarkMetaVal'], 80, 140 + 120 - 42, 300, 60)
     
     draw_card(c, 430, 140, 340, 120, bg_color=DARK_CARD)
-    c.setStrokeColor(colors.HexColor("#1E3A5F"))
+    c.setStrokeColor(colors.HexColor("#331E24"))
     c.roundRect(430, 140, 340, 120, 6, stroke=1, fill=0)
     draw_para(c, "<b>M Saryu</b>", STYLES['DarkTeam'], 450, 140 + 120 - 18, 300, 20)
     p_saryu = "Registration No: <b>24BCE2524</b><br/>Bachelor of Technology in Computer Science & Engineering<br/>School of Computer Science & Engineering (SCOPE)<br/>Vellore Institute of Technology (VIT), Vellore"
     draw_para(c, p_saryu, STYLES['DarkMetaVal'], 450, 140 + 120 - 42, 300, 60)
     
-    draw_para(c, "<b>Course: BCSE304L Database Management Systems • Submission Complete</b>", STYLES['DarkSubtitle'], 60, 95, 700, 25)
+    draw_para(c, "<b>Course: BCSE304L Database Management Systems • Faculty Guide: Prof. Kanagaraj K</b>", STYLES['DarkSubtitle'], 60, 95, 750, 25)
     
     c.restoreState()
 
@@ -1088,7 +1122,36 @@ def build_combined_pdf():
     c.save()
     print(f"[SUCCESS] Saved Combined Review 1 & Review 2 PDF: {PDF_COMBINED}")
 
+def build_review_2_presentation_pdf():
+    print(f">>> Building: {PDF_R2_PRESENTATION} (14 Widescreen 16:9 Slides)...")
+    c = canvas.Canvas(PDF_R2_PRESENTATION, pagesize=(PAGE_W, PAGE_H))
+    
+    r2_slides = [
+        build_slide_16,
+        build_slide_17,
+        build_slide_18,
+        build_slide_19,
+        build_slide_20,
+        build_slide_21,
+        build_slide_22,
+        build_slide_23,
+        build_slide_24,
+        build_slide_25,
+        build_slide_26,
+        build_slide_27,
+        build_slide_28,
+        build_slide_29,
+    ]
+    
+    for i, slide_fn in enumerate(r2_slides):
+        slide_fn(c)
+        c.showPage()
+        
+    c.save()
+    print(f"[SUCCESS] Saved Review 2 Presentation PDF: {PDF_R2_PRESENTATION}")
+
 if __name__ == "__main__":
     build_review_1_pdf()
     build_combined_pdf()
-    print(">>> Finished generating both FraudLens PDF deliverables successfully!")
+    build_review_2_presentation_pdf()
+    print(">>> Finished generating all FraudLens presentation deliverables successfully!")

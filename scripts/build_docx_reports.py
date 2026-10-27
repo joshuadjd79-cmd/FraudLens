@@ -233,7 +233,7 @@ def build_review_1_docx():
 
     add_callout(doc, "Project Review Phase", "Review 1 Final Report: Relational Domain Modeling, Third Normal Form (3NF) Architecture, Oracle SQL DDL Schema with Named Constraints & Sequences, Controlled DML Operations, Single-Row Formatting, Set Operators, Aggregates, and Multi-Table Analytical Joins.")
 
-    tbl_meta = doc.add_table(rows=6, cols=2)
+    tbl_meta = doc.add_table(rows=7, cols=2)
     tbl_meta.alignment = WD_TABLE_ALIGNMENT.CENTER
     col_w = [Inches(1.8), Inches(4.7)]
     for i, w in enumerate(col_w):
@@ -241,6 +241,7 @@ def build_review_1_docx():
 
     meta_items = [
         ("Project Candidates:", "D Joshua Daniel (24BCE0436)  ·  M Saryu (24BCE2524)"),
+        ("Faculty Guide:", "Prof. Kanagaraj K"),
         ("Degree & Programme:", "Bachelor of Technology in Computer Science & Engineering (B.Tech CSE)"),
         ("School & Institution:", "School of Computer Science and Engineering (SCOPE), VIT Vellore"),
         ("Course & Code:", "Database Management Systems (BCSE304L) / DBMS Laboratory"),
@@ -443,7 +444,7 @@ def build_review_1_and_2_docx():
 
     add_callout(doc, "Comprehensive Evaluation Scope", "Comprehensive Standalone Project Report Encompassing Review 1 Foundations (3NF Relational Modeling, DDL, DML, Aggregates, Joins) and Review 2 Advanced Engineering (Correlated Subqueries, Analytical Views, PL/SQL Procedures, Functions, Cursors, Audit Triggers, and 13 Automated Test Cases).")
 
-    tbl_meta = doc.add_table(rows=6, cols=2)
+    tbl_meta = doc.add_table(rows=7, cols=2)
     tbl_meta.alignment = WD_TABLE_ALIGNMENT.CENTER
     col_w = [Inches(1.8), Inches(4.7)]
     for i, w in enumerate(col_w):
@@ -451,6 +452,7 @@ def build_review_1_and_2_docx():
 
     meta_items = [
         ("Project Candidates:", "D Joshua Daniel (24BCE0436)  ·  M Saryu (24BCE2524)"),
+        ("Faculty Guide:", "Prof. Kanagaraj K"),
         ("Degree & Programme:", "Bachelor of Technology in Computer Science & Engineering (B.Tech CSE)"),
         ("School & Institution:", "School of Computer Science and Engineering (SCOPE), VIT Vellore"),
         ("Course & Code:", "Database Management Systems (BCSE304L) / DBMS Laboratory"),

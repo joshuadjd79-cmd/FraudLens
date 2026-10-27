@@ -176,6 +176,7 @@ def build_review1_pdf():
         [Paragraph("Department & School:", styles['CoverMetaLabel']), Paragraph("School of Computer Science and Engineering (SCOPE)", styles['CoverMetaVal'])],
         [Paragraph("Institution:", styles['CoverMetaLabel']), Paragraph("Vellore Institute of Technology (VIT), Vellore", styles['CoverMetaVal'])],
         [Paragraph("Target Database:", styles['CoverMetaLabel']), Paragraph("Oracle Database (11g / 12c / 19c / 21c / 23c) SQL Dialect", styles['CoverMetaVal'])],
+        [Paragraph("Faculty Guide:", styles['CoverMetaLabel']), Paragraph("<b>Prof. Kanagaraj K</b>", styles['CoverMetaVal'])],
         [Paragraph("Review Designation:", styles['CoverMetaLabel']), Paragraph("<b>Review 1: Relational Schema Design & SQL Foundations</b>", styles['CoverMetaVal'])],
     ]
     t_meta = Table(meta_data, colWidths=[140, 365])
@@ -190,7 +191,7 @@ def build_review1_pdf():
     story.append(t_meta)
     story.append(Spacer(1, 60))
     story.append(HRFlowable(width="100%", thickness=1, color=COLOR_BORDER, spaceAfter=15, spaceBefore=0))
-    story.append(Paragraph("School of Computer Science and Engineering (SCOPE) · VIT Vellore · Academic Year 2024–2025", styles['CoverMetaLabel']))
+    story.append(Paragraph("School of Computer Science and Engineering (SCOPE) · VIT Vellore", styles['CoverMetaLabel']))
     story.append(PageBreak())
 
     # =========================================================================
